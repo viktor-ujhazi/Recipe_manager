@@ -35,15 +35,15 @@ namespace RecipeManager
             Recipe r5 = new Recipe(5, "5. recipe", ing5);
             Console.WriteLine(r5);
 
-            Recipe r6 = (Recipe)r1.Clone();
-            Recipe r7 = (Recipe)r2.Clone();
+            Recipe r6 = r1.Deepcopy();
+            Recipe r7 = r2.Deepcopy();
             Recipe r8 = (Recipe)r3.Clone();
             
-            r6.name = "r6";
-            r6.ingredients.Add("ingredient 6_1");
-            r6.ingredients.Remove("ingredient 1_1");
-            r7.name = "r7";
-            r8.name = "r8";
+            r6.Name = "r6";
+            r6.Ingredients.Add("ingredient 6_1");
+            r6.Ingredients.Remove("ingredient 1_1");
+            r7.Name = "r7";
+            r8.Name = "r8";
 
             Console.WriteLine(r1);
             Console.WriteLine(r2);

@@ -6,27 +6,10 @@ namespace RecipeManager
 {
     class Recipe : ICloneable
     {
-        public int identifier;
-        public string name;
-        public List<string> ingredients;
+        public int Identifier { get; set; }
+        public string Name { get; set; }
+        public List<string> Ingredients { get; set; }
 
-        public int Identifier
-        {
-            get{ return identifier;}
-            set{ identifier = value; }
-        }
-        
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
-
-        public List<string> Ingredients
-        {
-            get { return ingredients; }
-            set { ingredients = value; }
-        }
         
         public Recipe()
         {
@@ -44,22 +27,32 @@ namespace RecipeManager
         override public string ToString()
         {
             string listOfIngredients = "";
-            foreach (var item in ingredients)
+            foreach (var item in Ingredients)
             {
                 listOfIngredients += item + "\n";
             }
             
-            return "Recipe id: " + identifier + "\nRecipe name: " + name + "\nIngredients:\n" + listOfIngredients;
+            return "Recipe id: " + Identifier + "\nRecipe name: " + Name + "\nIngredients:\n" + listOfIngredients;
         }
 
         public object Clone()
         {
-            //Recipe r = new Recipe();
-            //r.Identifier = identifier;
-            //r.Name = name;
-            //r.Ingredients = ingredients;
+            
             Recipe r = (Recipe)this.MemberwiseClone();
             return r;
+        }
+
+        public Recipe Deepcopy()
+        {
+            List<string> copiedIngredients = new List<string>();
+            foreach (var item in Ingredients)
+            {
+                copiedIngredients.Add(item);
+            }
+            
+            
+            Recipe deepcopiedRecipe = new Recipe(this.Identifier, this.Name, copiedIngredients);
+            return deepcopiedRecipe;
         }
     }
 
